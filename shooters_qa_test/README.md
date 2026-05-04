@@ -1,7 +1,7 @@
 # QA Automation Test
 
 - Python
-- Selenium
+- Playwright
 - Pytest
 - Page Object Pattern
 - Chrome
