@@ -1,11 +1,15 @@
-# QA Automation Test
+# QA Automation Project
 
+## Stack
 - Python
 - Playwright
 - Pytest
-- Page Object Pattern
-- Chrome
+- Page Object Model
+- Allure Report
 
+---
+
+## Installation
 
 ```bash
 pip install -r requirements.txt
