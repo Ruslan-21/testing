@@ -1,17 +1,18 @@
 import pytest
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+from playwright.sync_api import sync_playwright
 
 
-@pytest.fixture
-def driver():
-    options = webdriver.ChromeOptions()
-    options.add_argument("--start-maximized")
+@pytest.fixture(scope="function")
+def browser_page():
+    url = "https://winwin.travel/app/landings/en"
 
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False, slow_mo=200)
+        context = browser.new_context()
+        page = context.new_page()
 
-    service = Service(ChromeDriverManager().install())
+        page.goto(url)
 
-    driver = webdriver.Chrome(service=service, options=options)
-    yield driver
-    driver.quit()
+        yield page
+
+        browser.close()
